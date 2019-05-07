@@ -51,12 +51,15 @@ class TeamForm(Form):
     auth5 = StringField('Player 5', validators=[valid_auth])
     auth6 = StringField('Player 6', validators=[valid_auth])
     auth7 = StringField('Player 7', validators=[valid_auth])
+    auth8 = StringField('Player 8', validators=[valid_auth])
+    auth9 = StringField('Player 9', validators=[valid_auth])
+    auth10 = StringField('Player 10', validators=[valid_auth])
     public_team = BooleanField('Public Team')
 
     def get_auth_list(self):
         auths = []
-        for i in range(1, 8):
-            key = 'auth{}'.format(i)
+        for index in range(0, 10):
+            key = 'auth{}'.format(index + 1)
             auths.append(self.data[key])
 
         return auths
@@ -125,6 +128,9 @@ def team_edit(teamid):
         auth5=team.auths[4],
         auth6=team.auths[5],
         auth7=team.auths[6],
+        auth8=team.auths[7],
+        auth9=team.auths[8],
+        auth10=team.auths[9],
         public_team=team.public_team)
 
     if request.method == 'GET':
