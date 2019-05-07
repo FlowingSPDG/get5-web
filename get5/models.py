@@ -88,7 +88,7 @@ class GameServer(db.Model):
 
 
 class Team(db.Model):
-    MAXPLAYERS = 7
+    MAXPLAYERS = 10
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
