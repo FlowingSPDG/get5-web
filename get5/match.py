@@ -188,6 +188,12 @@ def match_create():
                 else:
                     match.plugin_version = 'unknown'
 
+                # Enable Overtime if BO2 or more
+                if max_maps > 1: 
+                    server.send_rcon_command("mp_overtime_enabled 1")
+                else: #If BO1
+                    server.send_rcon_command("mp_overtime_enabled 0")
+
                 server.in_use = True
 
                 db.session.commit()
