@@ -54,7 +54,7 @@ class TeamForm(Form):
     auth8 = StringField('Player 8', validators=[valid_auth])
     auth9 = StringField('Player 9', validators=[valid_auth])
     auth10 = StringField('Player 10', validators=[valid_auth])
-    public_team = BooleanField('Public Team')
+    public_team = BooleanField('Public Team', default=True)
 
     def get_auth_list(self):
         auths = []
@@ -112,7 +112,7 @@ def team(teamid):
 @team_blueprint.route('/team/<int:teamid>/edit', methods=['GET', 'POST'])
 def team_edit(teamid):
     team = Team.query.get_or_404(teamid)
-    if not team.can_edit(g.user):
+    if not team.can_edit(g.user) and (g.user.admin == False):
         return 'Not your team', 400
 
     form = TeamForm(

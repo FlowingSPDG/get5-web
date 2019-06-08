@@ -97,10 +97,10 @@ class Team(db.Model):
     flag = db.Column(db.String(4), default='')
     logo = db.Column(db.String(10), default='')
     auths = db.Column(db.PickleType)
-    public_team = db.Column(db.Boolean, index=True)
+    public_team = db.Column(db.Boolean, default=True, index=True)
 
     @staticmethod
-    def create(user, name, tag, flag, logo, auths, public_team=False):
+    def create(user, name, tag, flag, logo, auths, public_team):
         rv = Team()
         rv.user_id = user.id
         rv.set_data(name, tag, flag, logo, auths, public_team and user.admin)
